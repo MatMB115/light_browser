@@ -1,20 +1,18 @@
 from PyQt5.QtCore import QUrl
 
 class BrowserController:
-    def __init__(self, model, view):
+    def __init__(self, model, view, logger=None):
         self.model = model
         self.view = view
+        self.logger = logger
         
-        # Set home page
         self.view.browser.setUrl(self.model.get_home_url())
-        
-        # Connect toolbar actions to controller methods
+
         self.view.back_btn.triggered.connect(self.view.browser.back)
         self.view.next_btn.triggered.connect(self.view.browser.forward)
         self.view.home_btn.triggered.connect(self.go_home)
         self.view.refresh_btn.triggered.connect(self.view.browser.reload)
-        
-        # Connect URL bar
+
         self.view.url_bar.returnPressed.connect(self.navigate_to_url)
         self.view.browser.urlChanged.connect(self.update_url)
     
@@ -27,3 +25,6 @@ class BrowserController:
     
     def update_url(self, url):
         self.view.url_bar.setText(url.toString())
+
+        if self.logger:
+            self.logger.log(url.toString())

@@ -5,12 +5,10 @@ class BrowserView(QMainWindow):
     def __init__(self):
         super(BrowserView, self).__init__()
         
-        # Initialize the browser view
         self.browser = QWebEngineView()
         self.setCentralWidget(self.browser)
         self.showMaximized()
         
-        # Navigation bar setup
         self.navbar = QToolBar()
         self.addToolBar(self.navbar)
         
