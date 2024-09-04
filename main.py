@@ -6,7 +6,7 @@ from controller import BrowserController
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    QApplication.setApplicationName('light_browser_mvc')
+    QApplication.setApplicationName('light_browser')
 
     log_enabled = '--log' in sys.argv or '-l' in sys.argv
 
